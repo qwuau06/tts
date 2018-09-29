@@ -81,14 +81,14 @@ module Tts
 
   def play lang="en", times=1, pause_gap = 1 
     #test if mpg123 exists?
-    `which mpg123`
+    `which omxplayer`
     if $?.to_i != 0
-      puts "mpg123 executable NOT found. This function only work with POSIX systems.\n Install mpg123 with `brew install mpg123` or `apt-get install mpg123`"
+      puts "omxplayer executable NOT found. This function only work with POSIX systems.\n Install omxplayer with `brew install mpg123` or `apt-get install omxplayer`"
       exit 1
     end
     fn = "tts_playonce"
     self.to_file(lang, fn)
-    times.times{|i| `mpg123 -q #{fn}`}
+    times.times{|i| `omxplayer #{fn}`}
     File.delete(fn)
   end
 
